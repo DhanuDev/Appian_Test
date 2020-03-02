@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:husky:types:appian:ewr"
+  xmlns:tns="urn:com:husky:types:appian:ewr" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="EWR_EPMReportEWR">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[BPMSDATA.PROC_EPM_RPT_EWR]]></xsd:documentation>
+      <xsd:appinfo source="http://www.appian.com/ae/types/2009">
+        <ns2:Metadata xmlns:ns2="http://www.appian.com/ae/types/2009">
+          <ns2:versionUuid>0000e341-4399-8000-d3f5-680000680000</ns2:versionUuid>
+          <ns2:history>
+            <ns2:historyInfo versionUuid="0003e27a-8435-8000-d3f5-680000680000"/>
+            <ns2:historyInfo versionUuid="0000e204-1bf4-8000-d3f5-680000680000"/>
+            <ns2:historyInfo versionUuid="0000e341-4399-8000-d3f5-680000680000"/>
+          </ns2:history>
+        </ns2:Metadata>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="epm_ewr_id" type="xsd:int"/>
+      <xsd:element name="epm_ewr_number" type="xsd:string"/>
+      <xsd:element name="project_title" type="xsd:string"/>
+      <xsd:element name="ewr_status" type="xsd:string"/>
+      <xsd:element name="project_status" type="xsd:string"/>
+      <xsd:element name="business_unit" type="xsd:string"/>
+      <xsd:element name="operating_district" type="xsd:string"/>
+      <xsd:element name="producing_facility_location" type="xsd:string"/>
+      <xsd:element name="business_unit_rep" type="xsd:string"/>
+      <xsd:element name="project_administrator" nillable="true" type="xsd:string"/>
+      <xsd:element name="project_lead" type="xsd:string"/>
+      <xsd:element name="turnover_date" type="xsd:dateTime"/>
+      <xsd:element name="create_date" type="xsd:dateTime"/>
+      <xsd:element name="ewr_released" type="xsd:dateTime"/>
+      <xsd:element name="afe_number_list" type="xsd:string"/>
+      <xsd:element name="approved_ltd_gross" type="xsd:int"/>
+      <xsd:element name="actual_received_spent" type="xsd:int"/>
+      <xsd:element name="committed_outstanding_gross" type="xsd:int"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="no_of_lines_to_be_abandoned" type="xsd:string"/>
+      <xsd:element name="afe_status_list" type="xsd:string"/>
+      <xsd:element name="all_afes_closed" type="xsd:boolean"/>
+      <xsd:element name="business_unit_desc" type="xsd:string"/>
+      <xsd:element name="operating_district_desc" type="xsd:string"/>
+      <xsd:element name="license_number" type="xsd:string"/>
+      <xsd:element name="line_number" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,61 @@
+Success (2):
+content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 "constant2"
+application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 "KVADMTest2"
+
+Referenced precedents that were not exported (2):
+user Kowsalya Kowsalya
+content 74474 _a-0000e195-e85b-8000-9ba2-011c48011c48_496812
+
+Trace:
+2020-01-03 12:02:45.392 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Begin transport.
+2020-01-03 12:02:45.392 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Retrieving object data.
+2020-01-03 12:02:45.397 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 App associated objects: [content=[_a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861]]
+2020-01-03 12:02:45.399 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Invalid associated objects: []
+2020-01-03 12:02:45.399 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Adding valid associated objects to be exported: GlobalBindingMap[content={_a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861=102560}]
+2020-01-03 12:02:45.399 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Setting uuids of object references.
+2020-01-03 12:02:45.399 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Processing reference: Application.forum
+2020-01-03 12:02:45.399 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Processing reference: Application.parent
+2020-01-03 12:02:45.402 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Processing reference: com.appiancorp.suiteapi.content.ContentRoleMap@7a0a86d9[
+  ContentRole[name=readers,inherit=false,allowForAll=false]
+  ContentRole[name=authors,inherit=false,allowForAll=false]
+  ContentRole[name=administrators,usernames=[Kowsalya],inherit=false,allowForAll=false]
+  ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+  ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+  ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+  securityVector=129:SEC_PUBLIC=true,SEC_CREATOR_ADMIN=true,SEC_INH_ADMIN=false,SEC_INH_EDITOR=false,SEC_INH_VIEWER=false,SEC_ALL_ADMIN=false,SEC_ALL_EDITOR=false,SEC_ALL_VIEWER=false
+]
+2020-01-03 12:02:45.402 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Processing reference: ContentRole[name=readers,inherit=false,allowForAll=false]
+2020-01-03 12:02:45.402 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Processing reference: ContentRole[name=authors,inherit=false,allowForAll=false]
+2020-01-03 12:02:45.402 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Processing reference: ContentRole[name=administrators,usernames=[Kowsalya],inherit=false,allowForAll=false]
+2020-01-03 12:02:45.403 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Processing reference: ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+2020-01-03 12:02:45.403 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Processing reference: ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+2020-01-03 12:02:45.403 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Processing reference: ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+2020-01-03 12:02:45.405 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Begin transport.
+2020-01-03 12:02:45.405 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Retrieving object data.
+2020-01-03 12:02:45.413 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Setting uuids of object references.
+2020-01-03 12:02:45.413 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: [Content:id=102560,versionId=-1,name=constant2,type=32,subtype=0,uuid=_a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861,parent=74474]
+2020-01-03 12:02:45.414 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: Constant.forum
+2020-01-03 12:02:45.414 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: Constant.parent
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: com.appiancorp.suiteapi.content.ContentRoleMap@31da027a[
+  ContentRole[name=readers,inherit=true,allowForAll=false]
+  ContentRole[name=authors,inherit=true,allowForAll=false]
+  ContentRole[name=administrators,inherit=true,allowForAll=false]
+  ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+  ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+  ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+  securityVector=15:SEC_PUBLIC=true,SEC_CREATOR_ADMIN=false,SEC_INH_ADMIN=true,SEC_INH_EDITOR=true,SEC_INH_VIEWER=true,SEC_ALL_ADMIN=false,SEC_ALL_EDITOR=false,SEC_ALL_VIEWER=false
+]
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: ContentRole[name=readers,inherit=true,allowForAll=false]
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: ContentRole[name=authors,inherit=true,allowForAll=false]
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: ContentRole[name=administrators,inherit=true,allowForAll=false]
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Processing reference: ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Completing produce.
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Exporting binary resources.
+2020-01-03 12:02:45.417 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Serializing object to XML.
+2020-01-03 12:02:45.55 DEBUG content 102560 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875861 Object transported.
+2020-01-03 12:02:45.55 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Completing produce.
+2020-01-03 12:02:45.55 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Exporting binary resources.
+2020-01-03 12:02:45.55 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Serializing object to XML.
+2020-01-03 12:02:45.557 DEBUG application 102710 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_875856 Object transported.

@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e346-7908-8000-d3f4-680000680000_206384</versionUuid>
+    <rule>
+        <name>EWR_ReportEWR</name>
+        <uuid>f57d5f4f-3feb-4f51-9911-d002c7cc5999</uuid>
+        <description></description>
+        <parentUuid>_a-0000db91-ef88-8000-048c-680000680000_43296</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!exportDocId,
+  local!errorMessage,
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 10,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "create_date",
+      ascending: false
+    )
+  ),
+   /*anandita begins - ENHC0019982*/
+  local!pagingInfoExcel: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: -1,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "create_date",
+      ascending: false
+    )
+  ),
+   /*anandita ends - ENHC0019982*/
+  local!prefList: #"13c8ad75-0d2c-4d87-b7da-944e9915831e"(ri!user_txt, #"_a-0000db0f-492e-8000-048c-680000680000_35074"),
+  local!businessUnitList: #"874a91a8-01cb-4680-a411-a84c7553021e"(Active: "Y"),
+  local!inactiveBusinessUnitList: #"874a91a8-01cb-4680-a411-a84c7553021e"(Active: "N"),
+  with(
+    local!dataSubset: todatasubset(ri!EWR_EPMReportEWRList, local!pagingInfo),
+    local!dataSubsetExcel: todatasubset(ri!EWR_EPMReportEWRList, local!pagingInfoExcel),
+    #"SYSTEM_SYSRULES_formLayout"(
+      label: ri!title_txt,
+      firstColumnContents:{
+        #"SYSTEM_SYSRULES_sectionLayout"(
+          label: "Filters",
+          firstColumnContents:{
+            #"SYSTEM_SYSRULES_pickerFieldCustom"(
+              label: "EWR Number",
+              labelPosition: "ADJACENT",
+              suggestFunction: #"ac83dbcd-cc90-4847-abbf-137218662688",
+              selectedLabels: ri!ewrNumberList_txt,
+              value: ri!ewrNumberList_txt,
+              saveInto: ri!ewrNumberList_txt
+            ),
+            #"SYSTEM_SYSRULES_dropdownField"(
+              label:"EWR Status",
+              labelPosition: "ADJACENT",
+              choiceLabels: {#"_a-0000daec-be1b-8000-048c-680000680000_29246", #"_a-0000daec-be1b-8000-048c-680000680000_29093", #"_a-0000daec-be1b-8000-048c-680000680000_29247", #"_a-0000daec-be1b-8000-048c-680000680000_29248"},
+              placeHolderLabel: #"_a-0000d9b9-c7bc-8000-048c-680000680000_19767",
+              choiceValues: {#"_a-0000daec-be1b-8000-048c-680000680000_29246", #"_a-0000daec-be1b-8000-048c-680000680000_29093", #"_a-0000daec-be1b-8000-048c-680000680000_29247", #"_a-0000daec-be1b-8000-048c-680000680000_29248"},
+              value: ri!ewrStatus_txt,
+              saveInto: ri!ewrStatus_txt
+            ),
+            #"827ed2ec-2413-4b4a-8fc9-00bce6559af6"(
+              selection: ri!EWRUwiList,
+              maxSelections: 1,
+              label: "EWR UWI",
+              required : false,
+              readOnly: false
+            ),
+            #"0b2c6953-5fa8-41b4-ada2-467cd59ed0d6"(
+              label: "Business Unit",
+              allChoiceLabels: merge(local!businessUnitList.Name, local!inactiveBusinessUnitList.Name),
+              allChoiceValues: merge(local!businessUnitList.BUCode, local!inactiveBusinessUnitList.BUCode),
+              value: ri!businessUnit_txt,
+              saveInto: ri!businessUnit_txt,
+              placeholderLabel: #"_a-0000d9b9-c7bc-8000-048c-680000680000_19767",
+              activeChoiceLabels: local!businessUnitList.Name,
+              activeChoiceValues: local!businessUnitList.BUCode
+            ),
+            #"da9a1a39-00b0-4fba-8ba6-639e28b412f3"(
+              contactRole_txt: #"_a-0000daf6-511d-8000-048c-680000680000_29662",
+              required_bool: false,
+              readOnly_bool: false,
+              huskyContactLoginIDList_txt:ri!buRepList_txt,
+              maxSelections_int: 1
+            ),
+            /*ENHC0019982 - Anandita begins*/
+             #"4ee77b93-68ec-4459-be85-9c9a3805595c"(
+              contactRole_txt: #"_a-0000dc14-3a43-8000-048c-680000680000_50998",
+              EPMContactHuskyID_int: ri!projectAdministratorID_int,
+              disableOtherOption_bool:true
+            ),
+            /*ENHC0019982 - Anandita ends*/
+            #"da9a1a39-00b0-4fba-8ba6-639e28b412f3"(
+              contactRole_txt: #"_a-0000daf6-511d-8000-048c-680000680000_29663",
+              required_bool: false,
+              readOnly_bool: false,
+              huskyContactLoginIDList_txt:ri!projectLeaderList_txt,
+              maxSelections_int: 10
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label:"Producing Facility Location",
+              labelPosition: "ADJACENT",
+              instructions: #"_a-0000dc39-e7f2-8000-048c-680000680000_51409",
+              value: ri!producingFacilityLocation_txt,
+              saveInto: ri!producingFacilityLocation_txt
+            ),
+            #"3dbacecf-1411-41e4-8c72-9a8976883c40"(
+              WBSMasterViewList: ri!WBSMasterViewList,
+              maxSelections_int: 1
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label:"Project Title",
+              labelPosition: "ADJACENT",
+              value: ri!projectTitle_txt,
+              saveInto: ri!projectTitle_txt
+            ),
+            #"SYSTEM_SYSRULES_checkboxField"(
+              label:"Project Status",
+              labelPosition: "ADJACENT",
+              choiceLabels: {#"_a-0000db04-3a5d-8000-048c-680000680000_30137", #"_a-0000db04-3a5d-8000-048c-680000680000_30140", #"_a-0000db04-3a5d-8000-048c-680000680000_30139", #"_a-0000db04-3a5d-8000-048c-680000680000_30141", #"_a-0000db04-3a5d-8000-048c-680000680000_30138"},
+              placeHolderLabel: #"_a-0000d9b9-c7bc-8000-048c-680000680000_19767",
+              choiceValues: {#"_a-0000db04-3a5d-8000-048c-680000680000_30137", #"_a-0000db04-3a5d-8000-048c-680000680000_30140", #"_a-0000db04-3a5d-8000-048c-680000680000_30139", #"_a-0000db04-3a5d-8000-048c-680000680000_30141", #"_a-0000db04-3a5d-8000-048c-680000680000_30138"},
+              value: ri!projectStatusList_txt,
+              saveInto: ri!projectStatusList_txt
+            ),
+            #"SYSTEM_SYSRULES_dateField"(
+              label: "EWR Release Date",
+              labelPosition: "ADJACENT",
+              instructions:"From",
+              value: ri!EWRReleaseDateFrom,
+              saveInto: ri!EWRReleaseDateFrom
+            ),
+            #"SYSTEM_SYSRULES_dateField"(
+              labelPosition: "ADJACENT",
+              instructions:"To",
+              value: ri!EWRReleaseDateTo,
+              saveInto: ri!EWRReleaseDateTo
+            ),          
+          },
+          secondColumnContents:{
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              labelPosition: "COLLAPSED",
+              value: #"SYSTEM_SYSRULES_richTextItem"(
+                style: "EMPHASIS",
+                text: "Note that the fields below reflect PARF information.  Any EWR with a PARF matching any of the below criteria will be shown."
+              )
+            ),
+            #"SYSTEM_SYSRULES_checkboxField"(
+              label:"Project Type",
+              labelPosition: "ADJACENT",
+              choiceLabels: {#"_a-0000daec-be1b-8000-048c-680000680000_29237", #"_a-0000daec-be1b-8000-048c-680000680000_29241", #"_a-0000daec-be1b-8000-048c-680000680000_29238", #"_a-0000daec-be1b-8000-048c-680000680000_29239"},
+              placeHolderLabel: #"_a-0000d9b9-c7bc-8000-048c-680000680000_19767",
+              choiceValues: {#"_a-0000daec-be1b-8000-048c-680000680000_29237", #"_a-0000daec-be1b-8000-048c-680000680000_29241", #"_a-0000daec-be1b-8000-048c-680000680000_29238", #"_a-0000daec-be1b-8000-048c-680000680000_29239"},
+              value: ri!projectTypeList_txt,
+              saveInto: ri!projectTypeList_txt
+            ),
+            #"SYSTEM_SYSRULES_dropdownField"(
+              label:"Province",
+              labelPosition: "ADJACENT",
+              choiceLabels: {#"_a-0000d7f9-7ee0-8000-048c-680000680000_9522", #"_a-0000d7f9-7ee0-8000-048c-680000680000_9520", #"_a-0000d7f9-7ee0-8000-048c-680000680000_9519"},
+              placeHolderLabel: #"_a-0000d9b9-c7bc-8000-048c-680000680000_19767",
+              choiceValues: {#"_a-0000d7f9-7ee0-8000-048c-680000680000_9522", #"_a-0000d7f9-7ee0-8000-048c-680000680000_9520", #"_a-0000d7f9-7ee0-8000-048c-680000680000_9519"},
+              value: ri!province_txt,
+              saveInto: ri!province_txt
+            ),
+            #"827ed2ec-2413-4b4a-8fc9-00bce6559af6"(
+              selection: ri!uwiList,
+              maxSelections: 1,
+              label: "PARF UWI",
+              required : false,
+              readOnly: false
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label:"From Location",
+              labelPosition: "ADJACENT",
+              value: ri!fromLocation_txt,
+              saveInto: ri!fromLocation_txt,
+              instructions: #"_a-0000dc39-e7f2-8000-048c-680000680000_51409"
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label:"To Location",
+              labelPosition: "ADJACENT",
+              value: ri!toLocation_txt,
+              saveInto: ri!toLocation_txt,
+              instructions: #"_a-0000dc39-e7f2-8000-048c-680000680000_51409"
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label:"Pipeline or Facility License Number",
+              labelPosition: "ADJACENT",
+              value: ri!licenseNumber_txt,
+              saveInto: ri!licenseNumber_txt
+            ),
+             #"SYSTEM_SYSRULES_textField"(
+              label:"EWR Pipeline License no.",
+              labelPosition: "ADJACENT",
+              value: ri!TieInLicenceNum_txt,
+              saveInto: ri!TieInLicenceNum_txt
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label:"Line Number",
+              labelPosition: "ADJACENT",
+              value: ri!TieInLineNum_txt,
+              saveInto: ri!TieInLineNum_txt
+            ),
+            
+            #"SYSTEM_SYSRULES_textField"(
+              label:"Surface File Number",
+              labelPosition: "ADJACENT",
+              value: ri!surfaceFileNumber_txt,
+              saveInto: ri!surfaceFileNumber_txt
+            )
+           
+            
+          }
+        ),
+        #"SYSTEM_SYSRULES_ButtonLayout"(
+          primaryButtons:{
+            #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+              label: #"_a-0000d823-61d5-8000-048c-680000680000_10636",
+              style:"PRIMARY",
+              value: #"_a-0000d823-61d5-8000-048c-680000680000_10638",
+              saveInto: ri!button_txt
+              ),
+            #"SYSTEM_SYSRULES_ButtonWidget"(
+              label: #"_a-0000daec-be1b-8000-048c-680000680000_29267",
+              style:"NORMAL",
+              saveInto:{
+                a!save(ri!ewrNumberList_txt, null()),
+                a!save(ri!ewrStatus_txt, null()),
+                a!save(ri!parfNumber_int, null()),
+                a!save(ri!projectStatusList_txt, null()),
+                a!save(ri!uwiList, null()),
+                a!save(ri!licenseNumber_txt, null()),
+                a!save(ri!surfaceFileNumber_txt, null()),
+                a!save(ri!WBSMasterViewList, null()),
+                a!save(ri!producingFacilityLocation_txt, null()),
+                a!save(ri!fromLocation_txt, null()),
+                a!save(ri!toLocation_txt, null()),
+                a!save(ri!projectLeaderList_txt, null()),
+                a!save(ri!projectTypeList_txt, null()),
+                a!save(ri!projectTitle_txt, null()),
+                a!save(ri!province_txt, null()),
+                a!save(ri!businessUnit_txt, null()),
+                /*anandita begins*/
+                a!save(ri!projectAdministratorID_int, null),
+                /*anandita ends*/
+                a!save(ri!buRepList_txt, null()),
+                a!save(ri!EWRUwiList, null()),
+                a!save(ri!EWRReleaseDateFrom, null()),
+                a!save(ri!EWRReleaseDateTo, null()),                
+                a!save(ri!TieInLineNum_txt, null()),
+                a!save(ri!TieInLicenceNum_txt, null())                
+              }
+            )
+          },
+          secondaryButtons: {
+            #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+              label: #"_a-0000d3d8-839a-8000-048c-680000680000_1066",
+              style: "DESTRUCTIVE",
+              value: #"_a-0000d3d8-839a-8000-048c-680000680000_1065",
+              saveInto: ri!button_txt,
+              skipValidation: true
+            )
+          }
+        ),
+        if(
+          isnull(ri!EWR_EPMReportEWRList),
+          {},
+          #"SYSTEM_SYSRULES_sectionLayout"(
+            label: "EWRs",
+            firstColumnContents:{
+              /*a!linkField(*/
+                /*links:a!safeLink(*/
+                  /*label:"Download detailed list in Excel",*/
+                  /*uri:rule!GLOB_createExcelExportLinkWithFilters(*/
+                    /*reportType_txt: "EWR_EWRList",*/
+                    /*format_txt:"Excel",*/
+                    /*filterNameList_txt: {*/
+                      /*"EWRNumber",*/
+                      /*"ProjectTitle",*/
+                      /*"EWRStatus",*/
+                      /*"FromLocation",*/
+                      /*"ToLocation",*/
+                      /*"ProducingFacilityLocation",*/
+                      /*"UWI",*/
+                      /*"BusinessUnit",*/
+                      /*"ProjectLeader",*/
+                      /*"ProjectStatus",*/
+                      /*"ProjectType",*/
+                      /*"BURepresentative",*/
+                      /*anandita begins*/
+                      /*"ProjectAdministrator",*/
+                      /*anandita ends*/
+                      /*"Province",*/
+                      /*"SurfaceFileNumber",*/
+                      /*"LicenceNumber",*/
+                      /*"ParfNumber",*/
+                      /*"AFENumber",*/
+                      /*"EWRUWI",*/
+                      /*"EWRReleaseDateFrom",*/
+                      /*"EWRReleaseDateTo"*/
+                    /*},*/
+                    /*filterOperandList_txt: repeat(20,"="),*/
+                    /*filterValueList_txt:{*/
+                      /*if(rule!lengthNullSafe(ri!ewrNumberList_txt)&gt;0,char(34)&amp; joinarray(ri!ewrNumberList_txt,",")&amp;char(34),null),*/
+                      /*ri!projectTitle_txt,*/
+                      /*ri!ewrStatus_txt,*/
+                      /*ri!fromLocation_txt,*/
+                      /*ri!toLocation_txt,*/
+                      /*ri!producingFacilityLocation_txt,*/
+                      /*index(ri!uwiList,"UWI",null),*/
+                      /*ri!businessUnit_txt,*/
+                      /*anandita begins*/
+                      /*if(rule!APN_isBlank(ri!projectAdministratorID_int),null,index(rule!EWR_getContactHuskyViewByContactID(ri!projectAdministratorID_int),"HuskyNetworkID",null)),*/
+                      /*anandita ends*/
+                      /*if(rule!lengthNullSafe(ri!projectLeaderList_txt)&gt;0,char(34)&amp; joinarray(ri!projectLeaderList_txt,",")&amp;char(34),null),*/
+                      /*if(rule!lengthNullSafe(ri!projectStatusList_txt)&gt;0,char(34)&amp; joinarray(ri!projectStatusList_txt,",")&amp;char(34),null),*/
+                      /*if(rule!lengthNullSafe(ri!projectTypeList_txt)&gt;0,char(34)&amp; joinarray(ri!projectTypeList_txt,",")&amp;char(34),null),*/
+                      /*index(ri!buRepList_txt,1,null),*/
+                      /*ri!province_txt,*/
+                      /*ri!surfaceFileNumber_txt,*/
+                      /*ri!licenseNumber_txt,*/
+                      /*ri!parfNumber_int,*/
+                      /*index(ri!WBSMasterViewList,"AFE",null),*/
+                      /*index(ri!EWRUwiList,"UWI",null),*/
+                       /*ri!EWRReleaseDateFrom,*/
+                        /*ri!EWRReleaseDateTo*/
+                    /*}*/
+                  /*)*/
+                /*)*/
+              /*),*/
+              /*anandita begins*/
+              {
+                if(
+      isnull(
+        local!exportDocId
+      ),
+      /*This link field contains the link that starts the export*/
+      #"SYSTEM_SYSRULES_linkField"(
+        labelPosition: "COLLAPSED",
+        links: #"SYSTEM_SYSRULES_dynamicLink"(
+          label: "Export Data to Excel Report",
+          saveInto: {
+             #"SYSTEM_SYSRULES_startProcess"(
+                    /*label: "Download Parf Report to Excel",*/
+                    processModel: #"_a-0000e32a-e620-8000-d3f4-680000680000_203511",
+                    processParameters: 
+                    {EwrReportItem : local!dataSubsetExcel.data},
+                     onSuccess: a!save(
+                local!exportDocId,
+                fv!processInfo.pv.doc
+              ),
+              /*This displays an error if there is an issue executing the the save*/
+              onError: a!save(
+                local!errorMessage,
+                "Error Exporting File to Excel"
+              )
+                    
+                  )
+                  
+          }
+        )
+      ),
+      {}
+    ),
+    if(
+      /*This only displays the download link if a valid document was created*/
+      not(
+        isnull(
+          local!exportDocId
+        )
+      ),
+      /*This changes the link to a download link for the newly created document */
+      #"SYSTEM_SYSRULES_linkField"(
+        links: #"SYSTEM_SYSRULES_documentDownloadLink"(
+          label: "Download Excel File",
+          document: local!exportDocId
+        )
+      ),
+      #"SYSTEM_SYSRULES_textField"(
+        /*label:"No document available",*/
+        value: local!errorMessage,
+        readOnly: true
+      )
+    )
+              },
+              /*anandita ends*/
+              #"SYSTEM_SYSRULES_gridField"(
+                totalCount: local!datasubset.totalCount,
+                columns: {
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "EWR Number",
+                    field: "epm_ewr_number",
+                    data: index(local!dataSubset.data, "epm_ewr_number", {}),
+                    links: if(
+                      local!datasubset.totalCount=0,
+                      {},
+                      apply(
+                        #"SYSTEM_SYSRULES_safeLink"(
+                          uri: _,
+                          label: ""
+                        ),
+                        urlforrecord(
+                          recordType:#"_a-0000daf6-511d-8000-048c-680000680000_29368",
+                          recordIds: index(
+                            local!dataSubset.data,
+                            "epm_ewr_id",
+                            {}
+                          )
+                           
+                        )
+                      )
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Project Title",
+                    field: "project_title",
+                    data: index(local!dataSubset.data, "project_title", {})
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "EWR Status",
+                    field: "ewr_status",
+                    data: index(local!dataSubset.data, "ewr_status", {})
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Project Status",
+                    field: "project_status",
+                    data: index(local!dataSubset.data, "project_status", {})
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Business Unit",
+                    field: "business_unit",
+                    data: index(local!dataSubset.data, "business_unit_desc", {})
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Operating District",
+                    field: "operating_district",
+                    data: index(local!dataSubset.data, "operating_district_desc", {})
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Producing Facility Location",
+                    field: "producing_facility_location",
+                    data: index(local!dataSubset.data, "producing_facility_location", {})
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "BU Representative",
+                    field: "business_unit_rep",
+                    data: index(local!dataSubset.data, "business_unit_rep", {})
+                  ),
+                  /*anandita begins*/
+                   #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Project Administrator",
+                    field: "PROJECT_ADMINISTRATOR",
+                    data: index(local!dataSubset.data, "PROJECT_ADMINISTRATOR", {})
+                  ),
+                  /*anandita ends*/
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Project Lead",
+                    field: "project_lead",
+                    data: index(local!dataSubset.data, "project_lead", {})
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Turnover to Ops / BU",
+                    field: "turnover_date",
+                    data: if(
+                      #"_a-0000d5ce-7b5e-8000-048c-680000680000_5320"(local!dataSubset.data),
+                      #"_a-0000d458-9f5d-8000-048c-680000680000_2751"(
+                        #"_a-0000d5f3-2f7c-8000-048c-680000680000_5865"(
+                          index(
+                            local!dataSubset.data,
+                            "turnover_date",
+                            {}
+                          )
+                        )
+                      ),
+                      null
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "EWR Created Date",
+                    field: "create_date",
+                    data: if(
+                      #"_a-0000d5ce-7b5e-8000-048c-680000680000_5320"(local!dataSubset.data),
+                      #"_a-0000d458-9f5d-8000-048c-680000680000_2751"(
+                        #"_a-0000d5f3-2f7c-8000-048c-680000680000_5865"(
+                          index(
+                            local!dataSubset.data,
+                            "create_date",
+                            {}
+                          )
+                        )
+                      ),
+                      null
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "WBS",
+                    field: "afe_number_list",
+                    data: index(local!dataSubset.data, "afe_number_list", {})
+                  ),                  
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Approved LTD Gross",
+                    field: "approved_ltd_gross",
+                    data: apply(#"_a-0000da72-7a5a-8000-048c-680000680000_27356",index(local!dataSubset.data, "approved_ltd_gross", {}))
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Actual Received / Spent",
+                    field: "actual_received_spent",
+                    data: apply(#"_a-0000da72-7a5a-8000-048c-680000680000_27356",index(local!dataSubset.data, "actual_received_spent", {}))
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Committed Outstanding Gross",
+                    field: "committed_outstanding_gross",
+                    data: apply(#"_a-0000da72-7a5a-8000-048c-680000680000_27356",index(local!dataSubset.data, "committed_outstanding_gross", {}))
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Licence Number",
+                    field: "license_number",
+                    data: index(local!dataSubset.data, "license_number", {})
+                  ),
+                   #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Line Number",
+                    field: "line_number",
+                    data: index(local!dataSubset.data, "line_number", {})
+                  ),
+                   #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "No_of_Lines_to_be_Abandoned",
+                    field: "no_of_lines_to_be_abandoned",
+                    data: index(local!dataSubset.data, "no_of_lines_to_be_abandoned", {})
+                  ),
+                   #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "EWR Release Date",
+                    field: "ewr_released",
+                    data: if(
+                      #"_a-0000d5ce-7b5e-8000-048c-680000680000_5320"(local!dataSubset.data),
+                      #"_a-0000d458-9f5d-8000-048c-680000680000_2751"(
+                        #"_a-0000d5f3-2f7c-8000-048c-680000680000_5865"(
+                          index(
+                            local!dataSubset.data,
+                            "ewr_released",
+                            {}
+                          )
+                        )
+                      ),
+                      null
+                    )
+                  ),
+                },
+                value: local!pagingInfo,
+                saveInto: local!pagingInfo
+              )
+            }
+          )
+        ),
+        #"SYSTEM_SYSRULES_sectionLayout"(
+          label: "Filter Presets",
+          firstColumnContents:{
+            #"SYSTEM_SYSRULES_dropdownField"(
+              label: "Load Preset",
+              labelPosition: "ADJACENT",
+              choiceLabels: local!prefList.TemplateName,
+              choiceValues: local!prefList.ReportSearchPrefID,
+              placeholderLabel: "Create a new Filter",
+              value: ri!reportPrefID_int,
+              saveInto: ri!reportPrefID_int
+            )
+          },
+          secondColumnContents:{
+            if(
+              #"_a-0000d62a-67b3-8000-da6f-010000010000_950"(ri!reportPrefID_int),
+              {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Name",
+                  labelPosition: "ADJACENT",
+                  instructions: "To save your current filters as a preset, provide a name here and click ""Create"" below.",
+                  refreshAfter: "KEYPRESS",
+                  value: ri!reportPrefName_txt,
+                  saveInto: ri!reportPrefName_txt
+                ),
+                #"SYSTEM_SYSRULES_ButtonLayout"(
+                  primaryButtons: #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+                    label: "Create New Preset",
+                    disabled: len(ri!reportPrefName_txt) = 0,
+                    saveInto: a!save(ri!button_txt, #"_a-0000d419-47be-8000-048c-680000680000_1898")
+                  )
+                )
+              },
+              {
+                #"SYSTEM_SYSRULES_ButtonLayout"(
+                  primaryButtons: {
+                    #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+                      label: #"_a-0000d3d8-839a-8000-048c-680000680000_1072",
+                      saveInto: a!save(ri!button_txt, #"_a-0000d3d8-839a-8000-048c-680000680000_1071")
+                    ),
+                    #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+                      label: "Update Preset",
+                      saveInto: a!save(ri!button_txt, #"_a-0000d740-dc00-8000-048c-680000680000_7848")
+                    )
+                  },
+                  secondaryButtons: {
+                    #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+                      label: #"_a-0000dbe3-4716-8000-048c-680000680000_48606",
+                      saveInto: a!save(ri!button_txt, #"_a-0000dbe3-4716-8000-048c-680000680000_48607")
+                    )
+                  }
+                )
+              }
+            )
+          }
+        )
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>title_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ewrNumberList_txt</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ewrStatus_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>parfNumber_int</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>projectStatusList_txt</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>uwiList</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>licenseNumber_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>surfaceFileNumber_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>producingFacilityLocation_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>fromLocation_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>toLocation_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>projectLeaderList_txt</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>projectTypeList_txt</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>projectTitle_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>province_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>businessUnit_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>buRepList_txt</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>button_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>EWR_EPMReportEWRList</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>WBSMasterViewList</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>businessUnitList</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>inactiveBusinessUnitList</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>user_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>reportPrefName_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>reportPrefID_int</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>EWRUwiList</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>EWRReleaseDateFrom</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>EWRReleaseDateTo</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>TieInLineNum_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>TieInLicenceNum_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>projectAdministratorID_int</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e263-e867-8000-d3f4-680000680000_146511"/>
+        <historyInfo versionUuid="_a-0000e168-30e9-8000-d3f4-680000680000_129524"/>
+        <historyInfo versionUuid="_a-0000e202-7ab1-8000-d3f4-680000680000_181006"/>
+        <historyInfo versionUuid="_a-0000e207-d2d8-8000-d3f4-680000680000_141198"/>
+        <historyInfo versionUuid="_a-0000e206-92b1-8000-d3f4-680000680000_181176"/>
+        <historyInfo versionUuid="_a-0000e346-7908-8000-d3f4-680000680000_206384"/>
+    </history>
+</contentHaul>

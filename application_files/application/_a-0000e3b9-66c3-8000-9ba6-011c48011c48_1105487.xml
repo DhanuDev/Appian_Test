@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><applicationHaul xmlns:a="http://www.appian.com/ae/types/2009">
+.<?xml version="1.0" encoding="UTF-8"?><applicationHaul xmlns:a="http://www.appian.com/ae/types/2009">
     <versionUuid>_a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105499</versionUuid>
     <application>
         <name>TestForGitRepo</name>

@@ -1,0 +1,59 @@
+Success (3):
+datatype 13938 {urn:com:appian:types}TestDataType "{urn:com:appian:types}TestDataType"
+application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 "TestForGitRepo"
+recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 "FreshREcord"
+
+Trace:
+2020-03-03 06:46:53.495 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Begin transport.
+2020-03-03 06:46:53.495 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Retrieving object data.
+2020-03-03 06:46:53.501 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 App associated objects: [datatype=[{urn:com:appian:types}TestDataType],recordType=[5cd392de-1a17-4d64-866c-7549fea61355]]
+2020-03-03 06:46:53.504 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Invalid associated objects: []
+2020-03-03 06:46:53.504 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Adding valid associated objects to be exported: GlobalBindingMap[datatype={{urn:com:appian:types}TestDataType=13938},recordType={5cd392de-1a17-4d64-866c-7549fea61355=355}]
+2020-03-03 06:46:53.504 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Setting uuids of object references.
+2020-03-03 06:46:53.504 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Processing reference: Application.forum
+2020-03-03 06:46:53.505 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Processing reference: Application.parent
+2020-03-03 06:46:53.508 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Processing reference: com.appiancorp.suiteapi.content.ContentRoleMap@7b78f81e[
+  ContentRole[name=readers,inherit=false,allowForAll=false]
+  ContentRole[name=authors,inherit=false,allowForAll=false]
+  ContentRole[name=administrators,inherit=false,allowForAll=false]
+  ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+  ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+  ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+  securityVector=1:SEC_PUBLIC=true,SEC_CREATOR_ADMIN=false,SEC_INH_ADMIN=false,SEC_INH_EDITOR=false,SEC_INH_VIEWER=false,SEC_ALL_ADMIN=false,SEC_ALL_EDITOR=false,SEC_ALL_VIEWER=false
+]
+2020-03-03 06:46:53.508 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Processing reference: ContentRole[name=readers,inherit=false,allowForAll=false]
+2020-03-03 06:46:53.508 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Processing reference: ContentRole[name=authors,inherit=false,allowForAll=false]
+2020-03-03 06:46:53.508 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Processing reference: ContentRole[name=administrators,inherit=false,allowForAll=false]
+2020-03-03 06:46:53.508 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Processing reference: ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+2020-03-03 06:46:53.508 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Processing reference: ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+2020-03-03 06:46:53.508 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Processing reference: ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+2020-03-03 06:46:53.509 DEBUG datatype 13938 {urn:com:appian:types}TestDataType Begin transport.
+2020-03-03 06:46:53.509 DEBUG datatype 13938 {urn:com:appian:types}TestDataType Retrieving object data.
+2020-03-03 06:46:53.709 DEBUG datatype 13938 {urn:com:appian:types}TestDataType Setting uuids of object references.
+2020-03-03 06:46:53.71 DEBUG datatype 13938 {urn:com:appian:types}TestDataType Completing produce.
+2020-03-03 06:46:53.71 DEBUG datatype 13938 {urn:com:appian:types}TestDataType Exporting binary resources.
+2020-03-03 06:46:53.71 DEBUG datatype 13938 {urn:com:appian:types}TestDataType Serializing object to XML.
+2020-03-03 06:46:53.715 DEBUG datatype 13938 {urn:com:appian:types}TestDataType Object transported.
+2020-03-03 06:46:53.717 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Begin transport.
+2020-03-03 06:46:53.717 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Retrieving object data.
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Setting uuids of object references.
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: RecordTypeDefinition.dataSrcExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: RecordTypeDefinition.defaultFilters
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: RecordTypeDefinition.defaultFiltersExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: DetailViewCfg.headerExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: DetailViewCfg.nameExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: DetailViewCfg.uiExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: DetailViewCfg.visibilityExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: RecordTypeDefinition.facetsListExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: RecordTypeDefinition.listViewSrcExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: RecordTypeDefinition.listViewTemplateExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: RecordTypeDefinition.recordViewSrcExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Processing reference: RecordTypeDefinition.titleExpr
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Completing produce.
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Exporting binary resources.
+2020-03-03 06:46:53.749 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Serializing object to XML.
+2020-03-03 06:46:53.756 DEBUG recordType 355 5cd392de-1a17-4d64-866c-7549fea61355 Object transported.
+2020-03-03 06:46:53.756 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Completing produce.
+2020-03-03 06:46:53.756 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Exporting binary resources.
+2020-03-03 06:46:53.756 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Serializing object to XML.
+2020-03-03 06:46:53.763 DEBUG application 121994 _a-0000e3b9-66c3-8000-9ba6-011c48011c48_1105487 Object transported.

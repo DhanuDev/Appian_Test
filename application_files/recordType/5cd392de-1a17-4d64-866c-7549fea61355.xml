@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>14efe076-d39d-4117-bcd9-a01eed079c0a</versionUuid>
+  <recordType a:uuid="5cd392de-1a17-4d64-866c-7549fea61355" name="FreshREcord">
+    <a:pluralName>FreshREcordsFreshREcord</a:pluralName>
+    <a:description>FreshREcord</a:description>
+    <a:urlStub>P1P3EA</a:urlStub>
+    <a:listViewTemplateExpr/>
+    <a:detailViewCfg>
+      <a:nameExpr>="Summary"</a:nameExpr>
+      <a:uiExpr/>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr/>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:isExportable>false</a:isExportable>
+    <a:listViewSrcExpr/>
+    <a:recordViewSrcExpr/>
+    <a:iconId/>
+    <a:listAutoRefreshInterval>0.0</a:listAutoRefreshInterval>
+    <a:isCachingEnabled>false</a:isCachingEnabled>
+    <a:enabledFeatures>0</a:enabledFeatures>
+    <a:isVisibleInRecordTypeList>true</a:isVisibleInRecordTypeList>
+  </recordType>
+  <roleMap/>
+  <history>
+    <historyInfo versionUuid="14efe076-d39d-4117-bcd9-a01eed079c0a"/>
+  </history>
+  <migrationVersion>1</migrationVersion>
+</recordTypeHaul>
